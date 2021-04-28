@@ -1,0 +1,7 @@
+{
+    "jsonpaths": [
+		"$['contestid']",
+		"$['rank']",
+		"$['prize']"
+    ]
+}

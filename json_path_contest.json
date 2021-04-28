@@ -1,0 +1,14 @@
+{
+    "jsonpaths": [
+		"$['contestDetail']['contestKey']",
+		"$['contestDetail']['draftGroupId']",
+		"$['contestDetail']['name']",
+		"$['contestDetail']['entryFee']",
+		"$['contestDetail']['entries']",
+		"$['contestDetail']['maximumEntries']",
+		"$['contestDetail']['maximumEntriesPerUser']",
+		"$['contestDetail']['totalPayouts']",
+		"$['contestDetail']['contestStateDetail']",
+		"$['contestDetail']['contestStartTime']"
+    ]
+}
