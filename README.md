@@ -1,6 +1,6 @@
 ## Overview
 
-Daily Fantasy Sports (DFS) is a an increasingly popular way of playing fantasy sports.  As DFS became popular, the competition became tougher.  Howeve biggest vendors (such as Draftkings) are offering competition of non-tradition sports.  As a league of legends fan, this project is
+Daily Fantasy Sports (DFS) is a an increasingly popular way of playing fantasy sports.  As DFS became popular, the competition became tougher.  However, biggest vendors (such as Draftkings) are offering competition of non-tradition sports.
 
 One of the best ways to improve as a player is to analyze other professional lineups.  This project creates a pipeline that analyzes the 2021 spring split season in order to analyze the performance and lineups of top users.
 
@@ -15,6 +15,19 @@ The data pipeline is for this project is as follows:
 This process can be visualized below
 ![image](dataflow.png)
 
+
+
+## Technology
+
+### Redshift
+
+Redshift is being used to store this data because it is persistent, scalable and fast.
+Since redshift is located on the cloud, it is always available.
+As more data is loaded into the database, redshift can be scaled by adding addition storage space.
+Finally, the MPP capability of redshift allow queries to run very quickly, which saves time to analyze the data output.
+
+
+
 ## Data Sources
 
 ### Draftkings API
@@ -25,7 +38,20 @@ This dataset will include all the information about a contest. It is an unoffici
 
 This data comes from the actual draftkings contest.  Downloading this data require a draftkings account login, and the contest results are no longer after two weeks after the completion.  I have compiled a list of downloaded files [here](https://s3.console.aws.amazon.com/s3/buckets/luz24?region=us-east-1&prefix=dailyfantasy_lol/contest_results/&showversions=false)
 
-## Data Dictionary
+## Data Model and Data Dictionary
+
+The final data model is a relational model.  It is made up of 3 tables: contest, player_lineup, and player_payout.
+The contest table is the dimension table.  The player_lineup and player_payout tables are fact tables
+
+The end user can use player_payout and contest table to find the top players by prize
+The end user can use player_lineup and contest table to study lineups related to specific contests
+
+![image](datamodel.png)
+
+
+
+
+
 
 #### Contest
 
@@ -51,9 +77,8 @@ This data comes from the actual draftkings contest.  Downloading this data requi
 | `player` | `varchar(255)` | The name of the player or user that entered the contest |
 | `cpt` | `varchar(255)` | Lineup - Captain selection.  Players from this position are accrued 1.5x fantasy points |
 | `topl` | `varchar(255)` | Lineup - top lane selection |
-| `jng` | `varchar(255)` | Lineup - top lane selection |
-| `mid` | `varchar(255)` | Lineup - jungle selection |
-| `cpt` | `varchar(255)` | Lineup - mid lane selection |
+| `jng` | `varchar(255)` | Lineup - jungle selection |
+| `mid` | `varchar(255)` | Lineup - mid selection |
 | `adc` | `varchar(255)` | Lineup - adc selection |
 | `sup` | `varchar(255)` | Lineup - support selection |
 
